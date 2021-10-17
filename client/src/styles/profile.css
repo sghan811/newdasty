@@ -1,0 +1,211 @@
+.profilepage {
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 60rem;
+  margin: 0 auto;
+  margin-bottom: 100px;
+}
+.margintop100px {
+  margin-top: 100px;
+}
+.profile {
+  padding: 50px 25px 0 25px;
+}
+.profile-pc {
+  display: flex;
+  justify-content: center;
+}
+.profile-pc-right {
+  padding: 0 0 0 80px;
+  width: 400px;
+  margin: auto 0;
+}
+.profile-username {
+  padding: 15px 0;
+
+  font-size: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.profile-username a {
+}
+.profile-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.profile-top-pc {
+  padding: 0 0 15px 0;
+  display: flex;
+  align-items: center;
+}
+.followers-num {
+  padding: 0 2.5px 0 0;
+}
+.followers-num span {
+  font-family: "지마켓산스체2", "GmarketSansMedium", "GmarketSansMedium";
+  font-size: 1rem;
+}
+
+.followers-text span {
+  font-size: 1rem;
+}
+.profile-name {
+  padding: 0 0 15px 0;
+}
+.profile-name a {
+  font-family: "지마켓산스체2", "GmarketSansMedium", "GmarketSansMedium";
+}
+.info_content_title {
+  text-align: center;
+}
+
+.profile-bottom {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.profile-bottom button {
+  outline: none;
+  border: none;
+  background: transparent;
+  text-transform: uppercase;
+  opacity: 0.5;
+  padding: 1rem 10px 0 10px;
+  font-size: 1.25rem;
+}
+
+.profile-bottom button.active {
+  border-bottom: 4px solid var(--c1);
+  border-radius: 10px;
+  opacity: 0.8;
+}
+.aperture {
+  cursor: pointer;
+}
+.aperture svg {
+  font-size: 1.25rem;
+}
+.info_story {
+  padding: 15px 0 0 0;
+}
+
+@media (min-width: 338px) and (max-width: 768px) {
+  .profilepage {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+  .profile {
+    padding: 30px 15px 0 15px;
+  }
+  .profile-username {
+    padding: 7.5px 0;
+    text-align: center;
+  }
+  .profile-top {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: fit-content;
+    text-align: center;
+  }
+  .profile-top-pc {
+    padding: 0 7.5px 7.5px 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .profile-pc {
+    width: 100%;
+  }
+  .profile-pc-right {
+    padding: 0 0 0 20px;
+    width: fit-content;
+    margin: auto 0;
+  }
+  .followers-num {
+    padding: 2.5px;
+  }
+  .followers-num span {
+    font-family: "지마켓산스체2", "GmarketSansMedium", "GmarketSansMedium";
+    font-size: 0.85rem;
+  }
+
+  .followers-text span {
+    font-size: 0.85rem;
+  }
+  .profile-name {
+    padding: 0 0 7.5px 0;
+  }
+  /* .profile_tab {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  } */
+  .profile-bottom button {
+    font-size: 1rem;
+    outline: none;
+    border: none;
+    background: transparent;
+    text-transform: uppercase;
+    opacity: 0.5;
+    padding: 0 10px;
+  }
+}
+@media (max-width: 337px) {
+  .profilepage {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+  .profile {
+    padding: 30px 15px 0 15px;
+  }
+  .profile-username {
+    padding: 7.5px 0;
+    text-align: center;
+  }
+  .profile-top {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: fit-content;
+    text-align: center;
+  }
+  .profile-top-pc {
+    padding: 0 7.5px 7.5px 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .profile-pc {
+    width: 100%;
+  }
+  .profile-pc-right {
+    padding: 0 0 0 10px;
+    width: fit-content;
+    margin: auto 0;
+  }
+  .followers-num {
+    padding: 2.5px;
+  }
+  .followers-num span {
+    font-family: "지마켓산스체2", "GmarketSansMedium", "GmarketSansMedium";
+    font-size: 0.75rem;
+  }
+
+  .followers-text span {
+    font-size: 0.75rem;
+  }
+  .profile-name {
+    padding: 0 0 7.5px 0;
+  }
+  .profile-bottom button {
+    font-size: 0.75rem;
+    outline: none;
+    border: none;
+    background: transparent;
+    text-transform: uppercase;
+    opacity: 0.5;
+    padding: 0 10px;
+  }
+}

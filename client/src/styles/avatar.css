@@ -1,0 +1,92 @@
+.avatar-box {
+  margin: auto 0;
+}
+.profileicon {
+  height: 2rem;
+  width: 2rem;
+}
+.supper-avatar {
+  height: 250px;
+  width: 250px;
+  border-radius: 50%;
+  display: block;
+  margin: 0px auto;
+  font-size: 5rem;
+}
+
+.big-avatar {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  font-size: 5rem;
+  color: #222222;
+}
+
+.medium-avatar {
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  font-size: 2rem;
+  color: #222222;
+}
+
+.medium-avatar svg {
+  font-size: 1rem;
+  color: #222222;
+}
+
+.small-avatar {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  font-size: 5rem;
+  color: #222222;
+}
+
+.big-avatar-cover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+}
+.big-avatar-cover svg {
+  font-size: 6rem;
+  color: #444444;
+}
+.medium-avatar-cover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  margin-right: 5px;
+  font-size: 5rem;
+  color: #222222;
+}
+.profile-avatar {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  display: block;
+  margin: 0px auto;
+}
+
+@media (min-width: 338px) and (max-width: 768px) {
+  .profile-avatar {
+    height: 110px;
+    width: 110px;
+    border-radius: 50%;
+    display: block;
+    margin: 0px auto;
+  }
+}
+@media (max-width: 337px) {
+  .profile-avatar {
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    display: block;
+    margin: 0px auto;
+  }
+}

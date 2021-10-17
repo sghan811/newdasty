@@ -1,0 +1,375 @@
+/* sijak */
+.home {
+}
+.home-grid {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  width: 60rem;
+  margin: 0 auto;
+}
+.onetoone {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 60rem;
+  margin: 0 auto;
+}
+.community_all {
+  font-size: 2rem;
+  font-family: "지마켓산스체", "GmarketSansBold", Gbold;
+  color: black;
+}
+.community_finder{
+  margin: 1rem 0rem 0rem 0rem;
+  padding: 0 25px;
+  position: static;
+}
+.rightalign {
+  text-align: right;
+}
+.leftalign {
+  text-align: left;
+}
+.centeralign {
+  text-align: center;
+}
+.contentbox button {
+  background: none;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+.contentsub {
+  margin: 0 auto;
+  max-width: 15rem;
+}
+/* #region status */
+.status {
+  background-color: white;
+  padding: 0.5rem 25px;
+  border-radius: 14px;
+
+  margin: 15px 0rem 0rem 0rem;
+  box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.16);
+}
+
+.status .statusBtn {
+  color: gray;
+  background: none;
+  border: none;
+  padding: 0 10px;
+  text-align: left;
+  /* margin: 0 5px; */
+  /* margin-left: 3px; */
+}
+
+/* #endregion */
+
+/* #region Posts */
+
+/* #endregion */
+
+/* #region Post card's header */
+.posts .card_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.posts .card_header .card_name {
+  margin: auto 0;
+}
+.community-title {
+  display: flex;
+  align-items: center;
+}
+.community-title a {
+  text-transform: uppercase;
+  font-size: 1.75rem;
+  font-family: "지마켓산스체", "GmarketSansBold", Gbold;
+  color: #c1c1c1;
+}
+.community-nexttext {
+  padding-left: 10px;
+}
+.author a {
+  font-size: 1rem;
+}
+.createdAt a {
+  font-size: 0.75rem;
+  color: #6c757d !important;
+}
+
+.posts .card_header .dropdown-menu {
+  position: absolute;
+  left: inherit !important;
+  right: 0;
+}
+
+.posts .card_header .dropdown-item {
+  display: flex;
+  margin: 5px 0;
+}
+
+.posts .card_header .dropdown-item:hover {
+  background: var(--pink);
+}
+
+.posts .card_header #moreLink {
+  color: var(--c1);
+}
+
+/* #endregion */
+
+/* #region Post card's body */
+.posts .card_body-content {
+  padding: 0 25px;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+
+.posts .buttons-box {
+  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding-top: 3%;
+}
+.content-textedL {
+  width: 100%;
+}
+.content-textedR {
+  width: 100%;
+}
+.R {
+  border-radius: 15px 0px 0px 15px;
+}
+.L {
+  border-radius: 0px 15px 15px 0px;
+}
+.content-textedL button {
+  border-radius: 0px 15px 15px 0px;
+  /* background: #d9c6ff; */
+  width: 100%;
+  height: 128px;
+  /* margin-right: 6px; */
+  outline: 0;
+  border: 10px;
+  outline: 0;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.16);
+}
+
+.content-textedR button {
+  border-radius: 15px 0px 0px 15px;
+  /* background: #c2ffee; */
+  width: 100%;
+  height: 128px;
+  /* margin-left: 6px; */
+  border: 10px;
+  outline: 0;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.16);
+}
+.contentbox {
+  width: 100%;
+  max-height: 220px;
+}
+.Lefted {
+  /* background: #d9c6ff; */
+  border-radius: 0px 15px 15px 0px;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.16);
+}
+.Righted {
+  /* background: #c2ffee; */
+
+  border-radius: 15px 0px 0px 15px;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.16);
+}
+.content-imaged {
+}
+.file_imgs {
+  align-items: center;
+  width: 100%;
+}
+.file_imgs a {
+  font-family: "지마켓산스체", "GmarketSansBold", Gbold;
+  font-size: 1rem;
+}
+.file_imgs img {
+  max-width: 100%;
+  max-height: 200px;
+}
+.posts .card_body-content .readMore {
+  /* color: crimson; */
+  cursor: pointer;
+}
+.widthfull a {
+  font-family: "지마켓산스체", "GmarketSansBold", Gbold;
+}
+.choice a {
+  font-family: "지마켓산스체", "GmarketSansBold", Gbold;
+}
+
+/* #endregion  */
+
+/* #region Post card's footer */
+.posts .card_icon_menu {
+  padding-bottom: 7.5px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.posts .card_icon_menu i {
+  font-size: 28px;
+  /* margin: 10px; */
+}
+
+.posts .card_icon_menu img {
+  width: 28px;
+  height: 28px;
+  transform: translate(5px, 10px);
+  opacity: 0.9;
+}
+/* #endregion  */
+
+.posts .card_footer {
+  font-size: 1rem;
+}
+
+.footer_like {
+  padding-left: 3px;
+}
+
+.footer_comments {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.footer_anchor {
+  padding-right: 3px;
+}
+.total {
+  padding: 0;
+}
+
+.home-select {
+  position: -webkit-sticky; /* 사파리 브라우저 지원 */
+  position: sticky;
+  display: flex;
+  justify-content: center;
+  top: 70px;
+  margin-top: 10px;
+  z-index: 3;
+  box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.16);
+  background-color: white;
+  border-radius: 15px 15px 15px 15px;
+}
+
+.for-you-box {
+  padding: 0 00px 0 10px;
+  width: 50%;
+  /* background-color: black; */
+  opacity: 0.5;
+  border-radius: 0px 15px 15px 0px;
+}
+.only-follow-box {
+  padding: 0 10px 0 0px;
+  width: 50%;
+  /* background-color: black; */
+  opacity: 0.5;
+  border-radius: 15px 0px 0px 15px;
+}
+.for-you {
+  padding: 10px 10px 10px 0;
+
+  background: none;
+  border-radius: 10px;
+}
+.for-you button {
+}
+.only-follow {
+  padding: 10px 0 10px 10px;
+
+  background: none;
+  border-radius: 10px;
+}
+
+.home-select button {
+  outline: none;
+  border: none;
+  background: transparent;
+  text-transform: uppercase;
+  opacity: 0.5;
+  font-size: 1.25rem;
+  font-family: "지마켓산스체", "GmarketSansBold", Gbold;
+  color: black;
+}
+
+.home-select button.active {
+  border-bottom: 4px solid var(--c1);
+  border-radius: 10px;
+  opacity: 1;
+}
+.nofollowpage {
+  margin-top: 100px;
+  text-align: center;
+}
+a.nofollowpagesad {
+  font-size: 1.75rem;
+}
+a.nofollowpagego {
+  font-size: 1.5rem;
+}
+
+@media (min-width: 338px) and (max-width: 768px) {
+  .for-you {
+    padding: 5px 5px 5px 0;
+    border-radius: 0 10px 10px 0px;
+  }
+  .only-follow {
+    padding: 5px 0 5px 5px;
+    border-radius: 10px 0 0 10px;
+  }
+  .home-select {
+    display: flex;
+    justify-content: center;
+    padding-top: 0px;
+    top: 60px;
+  }
+  .nofollowpage {
+    padding: 0 15px;
+  }
+  a.nofollowpagesad {
+    font-size: 1.5rem;
+  }
+  a.nofollowpagego {
+    font-size: 1.25rem;
+  }
+}
+@media (max-width: 337px) {
+  .home-select {
+    display: flex;
+    justify-content: center;
+    padding-top: 0px;
+    top: 60px;
+  }
+  .for-you {
+    padding: 10px 10px 10px 0;
+    border-radius: 0 10px 10px 0px;
+  }
+  .only-follow {
+    padding: 10px 0 10px 10px;
+    border-radius: 10px 0 0 10px;
+  }
+  .home-select button {
+    outline: none;
+    border: none;
+    background: transparent;
+    text-transform: uppercase;
+    opacity: 0.5;
+    font-size: 1rem;
+  }
+}

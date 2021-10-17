@@ -1,0 +1,33 @@
+/* margin-right: 10px; */
+
+input#search_right {
+  border: 1px solid #e8e8e8;
+  border-radius: 15px;
+  width: 100%;
+  padding: 10px;
+}
+.search_form_right {
+  padding: 20px 0 10px 0;
+  font-size: 0.85rem;
+}
+/* #endregion */
+.close_right_search {
+  position: absolute;
+  top: 185px;
+  right: calc(50% - 28rem);
+  cursor: pointer;
+}
+
+
+@media (max-width: 768px) {
+  .searchpage {
+    padding: 0 15px;
+    width: 100%;
+    min-height: 70px;
+    position: sticky;
+    margin-top: 20px;
+    left: 0;
+    z-index: 2;
+    background-color: white;
+  }
+}
