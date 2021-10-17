@@ -4,8 +4,14 @@ import BommentCard from "./BommentCard";
 const BommentDisplay = ({ bomment, bost, replyCm }) => {
   const [showRep, setShowRep] = useState([]);
   const [next, setNext] = useState(1);
-
+  const randomrgb = () => {
+    const b = document.querySelectorAll('.comment_display');
+    for ( var i = 0; i < b.length; i++ ) {
+      b[i].style.backgroundColor = '#'+Math.floor(Math.random()*16777215).toString(16);;
+    }
+  }
   useEffect(() => {
+    randomrgb();
     setShowRep(replyCm.slice(replyCm.length - next));
   }, [replyCm, next]);
 
