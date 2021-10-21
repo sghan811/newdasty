@@ -42,9 +42,21 @@ const CommentCard = ({ children, comment, post, commentId }) => {
     }
   };
   const randomrgb = () => {
-    const b = document.querySelectorAll('.comment_card');
-    for ( var i = 0; i < b.length; i++ ) {
-      b[i].style.backgroundColor = '#'+Math.floor(Math.random()*16777215).toString(16);;
+    console.log(comment);
+    console.log(post);
+    const b = document.getElementById(post._id);
+    const aaa = b.querySelectorAll(`[id='${comment.postUserId}']`);
+    var user_find;
+    console.log(aaa);
+    if(post.likelefts.find((likeleft) => likeleft._id === comment.postUserId) != null){
+      user_find = document.getElementById(post.trend2).style.backgroundColor;
+    }
+    if(post.likerights.find((likeright) => likeright._id === comment.postUserId) != null){
+      user_find = document.getElementById(post.trend3).style.backgroundColor;
+    }
+    for ( var i = 0; i < aaa.length; i++ ) {
+      console.log('something');
+      aaa[i].style.backgroundColor = user_find;
     }
   }
   const handleLike = async () => {
@@ -79,7 +91,7 @@ const CommentCard = ({ children, comment, post, commentId }) => {
   };
   
   return (
-    <div className="comment_card " style={styleCard}>
+    <div className="comment_card " style={styleCard} id={comment.postUserId}>
       <div className={`${comment.contenty} comment_content_peek`}>
         <Link to={`/profile/${comment.user._id}`} className=" d-flex">
           <Avatar src={comment.user.avatar} size="small-avatar" />

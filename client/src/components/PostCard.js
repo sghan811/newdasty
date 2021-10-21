@@ -35,7 +35,7 @@ const PostCard = ({ post, theme }) => {
   }
   const match = homeBosts.bosts.find(findCherries);
   return (
-    <div className="card">
+    <div className="card" id={post._id}>
       {homeBosts.bosts.find(findCherries) !== undefined ? (
         <>
           <CardHeaderComu post={post} bost={match} theme={theme} />{" "}

@@ -233,7 +233,7 @@ const CardBody = ({ post }) => {
     countupEls.forEach(animateCountUp);
   };
   return (
-    <div className="card_body">
+    <div className="card_body" id={post._id}>
       <div className="cardpad">
         <div className="title centeralign ">
           <a>{post.title}</a>

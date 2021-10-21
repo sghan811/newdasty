@@ -50,7 +50,7 @@ const PostCardAll = ({ post, theme }) => {
     }
   });
   return (
-    <div className="card">
+    <div className="card" id={post._id}>
       {homeBosts.bosts.find(findCherries) !== undefined ? (
         <>
           <CardHeaderComuAll post={post} bost={match} theme={theme} />{" "}
