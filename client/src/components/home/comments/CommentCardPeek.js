@@ -45,9 +45,8 @@ const CommentCard = ({ children, comment, post, commentId }) => {
     console.log(comment);
     console.log(post);
     const b = document.getElementById(post._id);
-    const aaa = b.querySelectorAll(`[id='${comment.postUserId}']`);
+    const aaa = b.querySelector(`[id='${comment.postUserId}']`);
     var user_find;
-    console.log(aaa);
     if(post.likelefts.find((likeleft) => likeleft._id === comment.postUserId) != null){
       user_find = document.getElementById(post.trend2).style.backgroundColor;
     }
@@ -55,7 +54,6 @@ const CommentCard = ({ children, comment, post, commentId }) => {
       user_find = document.getElementById(post.trend3).style.backgroundColor;
     }
     for ( var i = 0; i < aaa.length; i++ ) {
-      console.log('something');
       aaa[i].style.backgroundColor = user_find;
     }
   }
