@@ -42,6 +42,7 @@ const CommentCard = ({ children, comment, post, commentId }) => {
     }
   };
   const randomrgb = () => {
+    if (loadLike) return;
     console.log(comment);
     console.log(post);
     const b = document.getElementById(post._id);
