@@ -48,12 +48,17 @@ const CommentCard = ({ children, comment, post, commentId }) => {
     const b = document.getElementById(post._id);
     const aaa = b.querySelectorAll(`[id='${comment.user._id}']`);
     var user_find;
-    if(post.likelefts.find((likeleft) => likeleft._id === comment.user._id) != null){
-      user_find = document.getElementById(post.trend2).style.backgroundColor;
+    try{
+      if(post.likelefts.find((likeleft) => likeleft._id === comment.user._id) != null){
+        user_find = document.getElementById(post.trend2).style.backgroundColor;
+      }
+    }catch{
+      if(post.likerights.find((likeright) => likeright._id === comment.user._id) != null){
+        user_find = document.getElementById(post.trend3).style.backgroundColor;
+      }
     }
-    if(post.likerights.find((likeright) => likeright._id === comment.user._id) != null){
-      user_find = document.getElementById(post.trend3).style.backgroundColor;
-    }
+
+
     for ( var i = 0; i < aaa.length; i++ ) {
       aaa[i].style.backgroundColor = user_find;
     }
