@@ -45,12 +45,12 @@ const CommentCard = ({ children, comment, post, commentId }) => {
     console.log(comment);
     console.log(post);
     const b = document.getElementById(post._id);
-    const aaa = b.querySelector(`[id='${comment.postUserId}']`);
+    const aaa = b.querySelectorAll(`[id='${comment.user._id}']`);
     var user_find;
-    if(post.likelefts.find((likeleft) => likeleft._id === comment.postUserId) != null){
+    if(post.likelefts.find((likeleft) => likeleft._id === comment.user._id) != null){
       user_find = document.getElementById(post.trend2).style.backgroundColor;
     }
-    if(post.likerights.find((likeright) => likeright._id === comment.postUserId) != null){
+    if(post.likerights.find((likeright) => likeright._id === comment.user._id) != null){
       user_find = document.getElementById(post.trend3).style.backgroundColor;
     }
     for ( var i = 0; i < aaa.length; i++ ) {
@@ -89,7 +89,7 @@ const CommentCard = ({ children, comment, post, commentId }) => {
   };
   
   return (
-    <div className="comment_card " style={styleCard} id={comment.postUserId}>
+    <div className="comment_card " style={styleCard} id={comment.user._id}>
       <div className={`${comment.contenty} comment_content_peek`}>
         <Link to={`/profile/${comment.user._id}`} className=" d-flex">
           <Avatar src={comment.user.avatar} size="small-avatar" />
