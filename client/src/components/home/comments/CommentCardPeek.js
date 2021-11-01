@@ -57,7 +57,9 @@ const CommentCard = ({ children, comment, post, commentId }) => {
         user_find = document.getElementById(post.trend3).style.backgroundColor;
       }
     }
-
+     if(post.likerights.find((likeright) => likeright._id === comment.user._id) != null){
+        user_find = document.getElementById(post.trend3).style.backgroundColor;
+      }
 
     for ( var i = 0; i < aaa.length; i++ ) {
       aaa[i].style.backgroundColor = user_find;
