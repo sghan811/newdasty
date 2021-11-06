@@ -3,7 +3,7 @@ import CommentCardPeek from "./CommentCardPeek3";
 
 const CommentDisplayPeek2 = ({ comment, post, replyCm, color }) => {
   const [showRep, setShowRep] = useState([]);
-  const [next, setNext] = useState(1);
+  const [next, setNext] = useState(2);
 
   useEffect(() => {
     setShowRep(replyCm.slice(replyCm.length - next));

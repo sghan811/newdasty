@@ -22,7 +22,31 @@ const CommentCard = ({ children, comment, post, commentId }) => {
   const [loadLike, setLoadLike] = useState(false);
   const [onEdit, setOnEdit] = useState(false);
   const [onReply, setOnReply] = useState(false);
+  const randomrgb = () => {
+    if (loadLike) return;
+    const b = document.getElementById(post._id);
+    console.log(b);
+    const aaa = b.querySelectorAll(`[id='${comment.user._id}']`);
+    console.log(aaa);
+    var user_find;
+    try{
+      if(post.likelefts.find((likeleft) => likeleft._id === comment.user._id) != null){
+        user_find = b.querySelector(`[id='${post.trend2}']`).style.backgroundColor;
+      }
+    }catch{
+      if(post.likerights.find((likeright) => likeright._id === comment.user._id) != null){
+        user_find =  b.querySelector(`[id='${post.trend3}']`).style.backgroundColor;
+      }
+    }
+     if(post.likerights.find((likeright) => likeright._id === comment.user._id) != null){
+        user_find =  b.querySelector(`[id='${post.trend3}']`).style.backgroundColor;
+      }
+      console.log(user_find);
 
+    for ( var i = 0; i < aaa.length; i++ ) {
+      aaa[i].style.backgroundColor = user_find;
+    }
+  }
   useEffect(() => {
     randomrgb();
     setContent(comment.content);
@@ -41,30 +65,7 @@ const CommentCard = ({ children, comment, post, commentId }) => {
       setOnEdit(false);
     }
   };
-  const randomrgb = () => {
-    if (loadLike) return;
-    console.log(comment);
-    console.log(post);
-    const b = document.getElementById(post._id);
-    const aaa = b.querySelectorAll(`[id='${comment.user._id}']`);
-    var user_find;
-    try{
-      if(post.likelefts.find((likeleft) => likeleft._id === comment.user._id) != null){
-        user_find = document.getElementById(post.trend2).style.backgroundColor;
-      }
-    }catch{
-      if(post.likerights.find((likeright) => likeright._id === comment.user._id) != null){
-        user_find = document.getElementById(post.trend3).style.backgroundColor;
-      }
-    }
-     if(post.likerights.find((likeright) => likeright._id === comment.user._id) != null){
-        user_find = document.getElementById(post.trend3).style.backgroundColor;
-      }
 
-    for ( var i = 0; i < aaa.length; i++ ) {
-      aaa[i].style.backgroundColor = user_find;
-    }
-  }
   const handleLike = async () => {
     if (loadLike) return;
 
@@ -95,10 +96,10 @@ const CommentCard = ({ children, comment, post, commentId }) => {
     opacity: comment._id ? 1 : 0.5,
     pointerEvents: comment._id ? "inherit" : "none",
   };
-  
+
   return (
-    <div className="comment_card " style={styleCard} id={comment.user._id}>
-      <div className={`${comment.contenty} comment_content_peek`}>
+    <div className="comment_card " style={styleCard}>
+      <div className={`${comment.contenty} comment_content_peek`} id={comment.user._id}>
         <Link to={`/profile/${comment.user._id}`} className=" d-flex">
           <Avatar src={comment.user.avatar} size="small-avatar" />
         </Link>

@@ -96,6 +96,13 @@ const Home = () => {
         {all.loading && homePosts.posts.loading ? (
           <img src={LoadIcon} alt="loading" className="d-block mx-auto" />
         ) : all.result === 0 ? (
+          <h2 className="text-center">No Community</h2>
+        ) : (
+          <CommunityMenus />
+        )}
+        {all.loading && homePosts.posts.loading ? (
+          <img src={LoadIcon} alt="loading" className="d-block mx-auto" />
+        ) : all.result === 0 ? (
           <h2 className="text-center">포스트가 없습니다</h2>
         ) : (
           <>
@@ -140,24 +147,6 @@ const Home = () => {
 
       <div className="">
         <RightSideBar />
-        <div className="community_finder">
-          <div className="community_all">
-            거기 당신!
-            <br/>
-            우리 커뮤니티에
-            <br/>
-            합류하지 않겠나?
-            <br/>
-          </div>
-          <br/>
-          {all.loading && homePosts.posts.loading ? (
-              <img src={LoadIcon} alt="loading" className="d-block mx-auto" />
-            ) : all.result === 0 ? (
-              <h2 className="text-center">No Community</h2>
-            ) : (
-              <CommunityMenus />
-          )}
-        </div>
       </div>
     </div>
   );

@@ -13,16 +13,7 @@
   width: 60rem;
   margin: 0 auto;
 }
-.community_all {
-  font-size: 2rem;
-  font-family: "지마켓산스체", "GmarketSansBold", Gbold;
-  color: black;
-}
-.community_finder{
-  margin: 1rem 0rem 0rem 0rem;
-  padding: 0 25px;
-  position: static;
-}
+
 .rightalign {
   text-align: right;
 }
@@ -35,6 +26,7 @@
 .contentbox button {
   background: none;
   border: none;
+
   text-align: center;
   text-decoration: none;
   display: inline-block;

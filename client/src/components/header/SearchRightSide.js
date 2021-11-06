@@ -13,8 +13,6 @@ const SearchRightSide = () => {
   const { auth } = useSelector((state) => state);
   const dispatch = useDispatch();
   const [load, setLoad] = useState(false);
-  const { all } = useSelector((state) => state);
-  const { homePosts } = useSelector((state) => state);
 
   const handleSearch = async (e) => {
     e.preventDefault();

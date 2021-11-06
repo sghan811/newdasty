@@ -20,7 +20,7 @@ const CommentsPeek = ({ post }) => {
   }, [post.comments]);
 
   return (
-    <div className="comments cardpad">
+    <div className="comments cardpad" id={post._id}>
       {showComments.map((comment, index) => (
         <CommentDisplayPeek
           key={index}

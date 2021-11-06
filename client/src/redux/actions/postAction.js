@@ -78,10 +78,6 @@ export const createPost = ({
       auth.token
     );
 
-
-
-    
-
     dispatch({
       type: POST_TYPES.CREATE_POST,
       payload: { ...res.data.newPost, user: auth.user },

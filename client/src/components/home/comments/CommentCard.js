@@ -22,8 +22,8 @@ const CommentCard = ({ children, comment, post, commentId }) => {
   const [loadLike, setLoadLike] = useState(false);
   const [onEdit, setOnEdit] = useState(false);
   const [onReply, setOnReply] = useState(false);
-
   useEffect(() => {
+    randomrgb();
     setContent(comment.content);
     setIsLike(false);
     setOnReply(false);
@@ -31,7 +31,31 @@ const CommentCard = ({ children, comment, post, commentId }) => {
       setIsLike(true);
     }
   }, [comment, auth.user._id]);
+  const randomrgb = () => {
+    if (loadLike) return;
+    const b = document.getElementById(post._id);
+    console.log(b);
+    const aaa = document.querySelectorAll(`[id='${comment.user._id}']`);
+    console.log(aaa);
+    var user_find;
+    try{
+      if(post.likelefts.find((likeleft) => likeleft._id === comment.user._id) != null){
+        user_find = b.querySelector(`[id='${post.trend2}']`).style.backgroundColor;
+      }
+    }catch{
+      if(post.likerights.find((likeright) => likeright._id === comment.user._id) != null){
+        user_find =  b.querySelector(`[id='${post.trend3}']`).style.backgroundColor;
+      }
+    }
+     if(post.likerights.find((likeright) => likeright._id === comment.user._id) != null){
+        user_find =  b.querySelector(`[id='${post.trend3}']`).style.backgroundColor;
+      }
+      console.log(user_find);
 
+    for ( var i = 0; i < aaa.length; i++ ) {
+      aaa[i].style.backgroundColor = user_find;
+    }
+  } 
   const handleUpdate = () => {
     if (comment.content !== content) {
       dispatch(updateComment({ comment, post, content, auth }));

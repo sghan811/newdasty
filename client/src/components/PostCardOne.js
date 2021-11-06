@@ -1,9 +1,9 @@
 import React from "react";
-import CardBody from "./home/post_card/CardBodyAll";
-import CardFooter from "./home/post_card/CardFooterAll";
-import CardHeader from "./home/post_card/CardHeaderAll";
+import CardBody from "./home/post_card/CardBody";
+import CardFooter from "./home/post_card/CardFooter";
+import CardHeader from "./home/post_card/CardHeader";
 import Comments from "./home/Comments";
-import InputComment from "./home/InputCommentAll";
+import InputComment from "./home/InputComment";
 
 const PostCardOne = ({ post, theme }) => {
   return (

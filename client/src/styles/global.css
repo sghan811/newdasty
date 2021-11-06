@@ -377,16 +377,16 @@ button.widthfull {
   display: none;
 }
 img.logo {
-  margin-top: 25%;
+  margin-top: 30%;
 
-  max-width: 30px;
-  max-height: 30px;
+  max-width: 40px;
+  max-height: 40px;
 }
 .headerpc {
   display: block;
   margin: auto;
   padding: 0 0 1px 0;
-  font-size: 30px;
+  font-size: 42px;
 }
 .hashtag {
   display: flex;
@@ -404,11 +404,6 @@ img.logo {
 }
 a.countup {
   color: black;
-  display: none;
-}
-a.par {
-  color: black;
-  display: none;
 }
 /* !responsive design */
 li {
@@ -511,8 +506,6 @@ a.underlinetext {
   font-family: "지마켓산스체", "GmarketSansBold", Gbold;
 }
 .communitymenus {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
   box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.16);
   padding: 0.5rem;
   background-color: white;
@@ -522,9 +515,6 @@ a.underlinetext {
   margin: 10px 10px 15px 10px;
   color: black;
   overflow-y: scroll;
-}
-.communitymenus::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera*/
 }
 .communitymenus:hover {
   background: #d0d0d0;
@@ -1057,8 +1047,8 @@ a.lowercase {
     padding: 0 15px;
   }
   img.logo {
-    max-width: 30px;
-    max-height: 30px;
+    max-width: 40px;
+    max-height: 40px;
   }
   .headerpc {
     display: block;

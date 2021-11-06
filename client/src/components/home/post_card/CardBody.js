@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment";
 import { Link } from "react-router-dom";
+import CommentDisplayPeek from "../comments/CommentDisplayPeek2";
+import CommentDisplayPeek2 from "../comments/CommentDisplayPeek3";
 import LikeButton from "../../LikeButton";
 import LikeleftButton from "../../LikeleftButton";
 import LikerightButton from "../../LikerightButton";
@@ -29,6 +31,18 @@ const CardBody = ({ post }) => {
 
   // The animation function, which takes an Element
   const animateCountUp = (el) => {
+    const a = document.querySelectorAll('.countup');
+    for ( var i = 0; i < a.length; i++ ) {
+      a[i].style.display = 'inline';
+    }
+    const b = document.querySelectorAll('.par');
+    for ( var i = 0; i < b.length; i++ ) {
+      b[i].style.display = 'inline';
+    }
+    const c = document.querySelectorAll('.number');
+    for ( var i = 0; i < c.length; i++ ) {
+      c[i].style.display = 'inline';
+    }
     let frame = 0;
     const countTo = parseInt(el.innerHTML, 10);
     // Start the animation running 60 times per second
@@ -52,6 +66,12 @@ const CardBody = ({ post }) => {
       }
     }, frameDuration);
   };
+  const id1 = post.trend2;
+  const id2 = post.trend3;
+  const [comments, setComments] = useState([]);
+  const [showComments, setShowComments] = useState([]);
+  const [next, setNext] = useState(4);
+  const [replyComments, setReplyComments] = useState([]);
   const [isLike, setIsLike] = useState(false);
   const [isLikeleft, setIsLikeleft] = useState(false);
   const [isLikeright, setIsLikeright] = useState(false);
@@ -61,7 +81,14 @@ const CardBody = ({ post }) => {
   const [loadLikeright, setLoadLikeright] = useState(false);
   const [saveLoad, setSaveLoad] = useState(false);
   const [isShare, setIsShare] = useState(false);
-
+  const randomrgb = () => {
+    const x = document.getElementById(post._id);
+    x.querySelector(`.widthfull`).style.backgroundColor = '#'+Math.floor(Math.random()*16777215).toString(16);
+  }
+  const randomrgb2 = () => {
+    const x = document.getElementById(post._id);
+    x.querySelectorAll(`.widthfull`)[1].style.backgroundColor = '#'+Math.floor(Math.random()*16777215).toString(16);
+  }
   const dispatch = useDispatch();
   const { auth, theme, socket } = useSelector((state) => state);
 
@@ -82,12 +109,13 @@ const CardBody = ({ post }) => {
       setIsLikeright(false);
     }
   }, [post.likes, post.likelefts, post.likerights, auth.user._id]);
+
   const handleLikeleft = async () => {
     if (loadLikeleft) return;
     setLoadLikeleft(true);
     await dispatch(likeleftPost({ post, auth, socket }));
     setLoadLikeleft(false);
-    const countupEls = document.querySelectorAll(`contentbox Lefted ${post.trend2}`).querySelectorAll(".countup");
+    const countupEls = document.querySelectorAll(".countup");
     countupEls.forEach(animateCountUp);
   };
 
@@ -143,7 +171,7 @@ const CardBody = ({ post }) => {
     setLoadLikeright(true);
     await dispatch(likerightPost({ post, auth, socket }));
     setLoadLikeright(false);
-    const countupEls = document.querySelectorAll(`contentbox Righted ${post.trend2}`).querySelectorAll(".countup");
+    const countupEls = document.querySelectorAll(".countup");
     countupEls.forEach(animateCountUp);
   };
 
@@ -169,6 +197,8 @@ const CardBody = ({ post }) => {
   };
 
   useEffect(() => {
+    randomrgb();
+    randomrgb2();
     if (auth.user.saved.find((id) => id === post._id)) {
       setSaved(true);
     } else {
@@ -186,7 +216,7 @@ const CardBody = ({ post }) => {
   }
 
   return (
-    <div className="card_body">
+    <div className="card_body" id={post._id}>
       <div className="cardpad">
         <div className="title centeralign">
           <a>{post.title}</a>
@@ -223,14 +253,22 @@ const CardBody = ({ post }) => {
             {post.images[0] ? (
               <div className="file_imgs img left">
                 <a>{post.content}</a>
-
+                {/* <div id="myDIV">
+                  ㅎㅎ<span class="countup">48</span>
+                </div> */}
                 <div className={`contentbox Lefted ${post.trend2}`}>
-                  <button className="widthfull" onClick={handleUnLikeleft}>
+                  <button className="widthfull" onClick={handleUnLikeleft} id={id1}>
                     <div className="containerBox">
-                      <div className="text-box Gbold underlinetext resultpercent">
+                      <div className="text-box Gbold resultpercent">
                         <a className="countup">
+                          {Math.round(
+                            (post.likelefts.length /
+                              (post.likelefts.length +
+                                post.likerights.length)) *
+                              100
+                          )}{" "}
                         </a>
-                        <a>%</a>
+                        <a className="par">%</a>
                       </div>
                       <img className=" L blur" src={post.images[0].url} />
                     </div>
@@ -242,16 +280,22 @@ const CardBody = ({ post }) => {
                 <button
                   className={`widthfull choice ${post.trend2}`}
                   onClick={handleUnLikeleft}
+                  id={id1}
                 >
                   <a>{post.content}</a>
 
-                  <div className="Gbold resultpercento underlinetext">
+                  <div className="Gbold resultpercento">
                     <a className="countup">
+                      {Math.round(
+                        (post.likelefts.length /
+                          (post.likelefts.length + post.likerights.length)) *
+                          100
+                      )}{" "}
                     </a>
-                    <a>%</a>
+                    <a className="par">%</a>
                   </div>
                   <div className="Gmedium">
-                    <a>{post.likelefts.length}</a>
+                    <a className="number">{post.likelefts.length}</a>
                   </div>
                 </button>
               </div>
@@ -267,12 +311,18 @@ const CardBody = ({ post }) => {
 
                     <div className={`contentbox Lefted ${post.trend2}`}>
                       {/* <button className="widthfull" onClick={handler}> */}
-                      <button className="widthfull">
+                      <button className="widthfull" id={id1}>
                         <div className="containerBox">
-                          <div className="text-box resultpercent">
+                          <div className="text-box resultpercento">
                             <a className="countup">
+                              {Math.round(
+                                (post.likelefts.length /
+                                  (post.likelefts.length +
+                                    post.likerights.length)) *
+                                  100
+                              )}{" "}
                             </a>
-                            <a>%</a>
+                            <a className="par">%</a>
                           </div>
                           <img className=" L blur" src={post.images[0].url} />
                         </div>
@@ -282,16 +332,21 @@ const CardBody = ({ post }) => {
                 ) : (
                   <div className="content-textedL left">
                     {/* <button onClick={handler}> */}
-                    <button className={`widthfull choice ${post.trend2}`}>
+                    <button className={`widthfull choice ${post.trend2}`} id={id1}>
                       <a>{post.content}</a>
-
                       <div>
                         <a className="countup">
+                          {Math.round(
+                            (post.likelefts.length /
+                              (post.likelefts.length +
+                                post.likerights.length)) *
+                              100
+                          )}{" "}
                         </a>
-                        <a>%</a>
+                        <a className="par">%</a>
                       </div>
                       <div>
-                        <a>{post.likelefts.length}</a>
+                        <a className="number">{post.likelefts.length}</a>
                       </div>
                     </button>
                   </div>
@@ -304,7 +359,7 @@ const CardBody = ({ post }) => {
                     <a>{post.content}</a>
 
                     <div className={`contentbox Lefted ${post.trend2}`}>
-                      <button className="widthfull" onClick={handleLikeleft}>
+                      <button className="widthfull" onClick={handleLikeleft} id={id1}>
                         <div className="containerBox">
                           <div className="text-box"></div>
                           <img className=" L" src={post.images[0].url} />
@@ -317,6 +372,7 @@ const CardBody = ({ post }) => {
                     <button
                       className={`widthfull ${post.trend2}`}
                       onClick={handleLikeleft}
+                      id={id1}
                     >
                       <a>{post.content}</a>
                     </button>
@@ -326,6 +382,24 @@ const CardBody = ({ post }) => {
             )}
           </>
         )}
+        <div>
+          {showComments.map((comment, index) => (
+            <CommentDisplayPeek
+              key={index}
+              comment={comment}
+              post={post}
+              replyCm={replyComments.filter((item) => item.reply === comment._id)}
+            />
+          ))}
+          {showComments.map((comment, index) => (
+            <CommentDisplayPeek2
+              key={index}
+              comment={comment}
+              post={post}
+              replyCm={replyComments.filter((item) => item.reply === comment._id)}
+            />
+          ))}
+        </div>
         {isLikeright ? (
           <>
             {post.images2[0] ? (
@@ -333,12 +407,18 @@ const CardBody = ({ post }) => {
                 <a>{post.contentsub}</a>
 
                 <div className={`contentbox Righted ${post.trend3}`}>
-                  <button className="widthfull" onClick={handleUnLikeright}>
+                  <button className="widthfull" onClick={handleUnLikeright} id={id2}>
                     <div className="containerBox">
-                      <div className="text-box Gbold underlinetext resultpercent">
+                      <div className="text-box Gbold resultpercent">
                         <a className="countup">
+                          {Math.round(
+                            (post.likerights.length /
+                              (post.likelefts.length +
+                                post.likerights.length)) *
+                              100
+                          )}{" "}
                         </a>
-                        <a>%</a>
+                        <a className="par">%</a>
                       </div>
                       <img className=" R blur" src={post.images2[0].url} />
                     </div>
@@ -350,16 +430,22 @@ const CardBody = ({ post }) => {
                 <button
                   className={`widthfull ${post.trend3}`}
                   onClick={handleUnLikeright}
+                  id={id2}
                 >
                   <a>{post.contentsub}</a>
 
-                  <div className="Gbold resultpercento underlinetext">
+                  <div className="Gbold resultpercento">
                     <a className="countup">
+                      {Math.round(
+                        (post.likerights.length /
+                          (post.likelefts.length + post.likerights.length)) *
+                          100
+                      )}{" "}
                     </a>
-                    <a>%</a>
+                    <a className="par">%</a>
                   </div>
                   <div className="Gmedium">
-                    <a>{post.likerights.length}</a>
+                    <a className="number">{post.likerights.length}</a>
                   </div>
                 </button>
               </div>
@@ -375,12 +461,18 @@ const CardBody = ({ post }) => {
 
                     <div className={`contentbox Righted ${post.trend3}`}>
                       {/* <button className="widthfull" onClick={handlerr}> */}
-                      <button className="widthfull">
+                      <button className="widthfull" id={id2}>
                         <div className="containerBox">
-                          <div className="text-box resultpercent">
+                          <div className="text-box resultpercento">
                             <a className="countup">
+                              {Math.round(
+                                (post.likerights.length /
+                                  (post.likelefts.length +
+                                    post.likerights.length)) *
+                                  100
+                              )}{" "}
                             </a>
-                            <a>%</a>
+                            <a className="par">%</a>
                           </div>
                           <img className=" R blur" src={post.images2[0].url} />
                         </div>
@@ -390,16 +482,22 @@ const CardBody = ({ post }) => {
                 ) : (
                   <div className="content-textedR right">
                     {/* <button className="widthfull" onClick={handlerr}> */}
-                    <button className={`widthfull ${post.trend3}`}>
+                    <button className={`widthfull ${post.trend3}`} id={id2}>
                       <a>{post.contentsub}</a>
 
                       <div>
                         <a className="countup">
+                          {Math.round(
+                            (post.likerights.length /
+                              (post.likelefts.length +
+                                post.likerights.length)) *
+                              100
+                          )}{" "}
                         </a>
-                        <a>%</a>
+                        <a className="par">%</a>
                       </div>
                       <div>
-                        <a>{post.likerights.length}</a>
+                        <a className="number">{post.likerights.length}</a>
                       </div>
                     </button>
                   </div>
@@ -412,7 +510,7 @@ const CardBody = ({ post }) => {
                     <a>{post.contentsub}</a>
 
                     <div className={`contentbox Righted ${post.trend3}`}>
-                      <button className="widthfull" onClick={handleLikeright}>
+                      <button className="widthfull" onClick={handleLikeright} id={id2}>
                         <div className="containerBox">
                           <div className="text-box"></div>
                           <img className=" R" src={post.images2[0].url} />
@@ -425,6 +523,7 @@ const CardBody = ({ post }) => {
                     <button
                       className={`widthfull ${post.trend3}`}
                       onClick={handleLikeright}
+                      id={id2}
                     >
                       <a>{post.contentsub}</a>
                     </button>

@@ -10,7 +10,7 @@ const CommentDisplay = ({ comment, post, replyCm }) => {
   }, [replyCm, next]);
 
   return (
-    <div className="comment_display">
+    <div className="comment_display" id={comment.user._id}>
       <CommentCard post={post} comment={comment} commentId={comment._id}>
         <div className="ps-4">
           {showRep.map(

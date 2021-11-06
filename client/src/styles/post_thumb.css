@@ -19,7 +19,17 @@
   height: 100%;
   object-fit: cover;
 }
-
+.countup {
+  display: none;
+}
+.par {
+  color: inherit;
+  display: none;
+}
+.number {
+  display: none;
+  color: inherit;
+}
 .thumbnail {
   color: black;
 }

@@ -16,11 +16,10 @@ const StatusModal = () => {
     return items2[Math.floor(Math.random() * items2.length)];
   }
 
-  var timestamp = new Date().getTime();
-  var r = timestamp + "r";
-  var l = timestamp + "l"
-  var random = r;
-  var random2 = l;
+  var items = ["fec8d8", "ffdfd3", "cdf1af", "fdf1ed"];
+  var items2 = ["fde2e6", "dcf2de", "bde8e7"];
+  var random = random_item(items);
+  var random2 = random_item2(items2);
 
   const [content, setContent] = useState("");
   const [contentsub, setContentsub] = useState("");
