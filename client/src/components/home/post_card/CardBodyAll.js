@@ -5,6 +5,8 @@ import LikeButton from "../../LikeButton";
 import LikeleftButton from "../../LikeleftButton";
 import LikerightButton from "../../LikerightButton";
 import { imageShow, videoShow } from "../../../utils/mediaShow";
+import CommentDisplayPeek from "../comments/CommentDisplayPeek2";
+import CommentDisplayPeek2 from "../comments/CommentDisplayPeek3";
 import { useSelector, useDispatch } from "react-redux";
 import {
   likePost,
@@ -73,7 +75,10 @@ const CardBody = ({ post }) => {
       }
     }, frameDuration);
   };
-
+  const [comments, setComments] = useState([]);
+  const [showComments, setShowComments] = useState([]);
+  const [next, setNext] = useState(2);
+  const [replyComments, setReplyComments] = useState([]);
   const [isLike, setIsLike] = useState(false);
   const [isLikeleft, setIsLikeleft] = useState(false);
   const [isLikeright, setIsLikeright] = useState(false);
@@ -89,6 +94,9 @@ const CardBody = ({ post }) => {
   const a1 = `contentbox Lefted ${post.trend2}`;
   const a2 = `contentbox Righted ${post.trend3}`;
   useEffect(() => {
+    const newCm = post.comments.filter((cm) => !cm.reply);
+    setComments(newCm);
+    setShowComments(newCm.slice(newCm.length - next));
     const a = document.querySelectorAll('.countup');
     for ( var i = 0; i < a.length; i++ ) {
       a[i].style.display = 'inline';
@@ -399,6 +407,24 @@ const CardBody = ({ post }) => {
             )}
           </>
         )}
+        <div>
+          {showComments.map((comment, index) => (
+            <CommentDisplayPeek
+              key={index}
+              comment={comment}
+              post={post}
+              replyCm={replyComments.filter((item) => item.reply === comment._id)}
+            />
+          ))}
+          {showComments.map((comment, index) => (
+            <CommentDisplayPeek2
+              key={index}
+              comment={comment}
+              post={post}
+              replyCm={replyComments.filter((item) => item.reply === comment._id)}
+            />
+          ))}
+        </div>
         {isLikeright ? (
           <>
             {post.images2[0] ? (
