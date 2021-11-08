@@ -9,6 +9,7 @@ import LikerightButton from "../../LikerightButton";
 import { imageShow, videoShow } from "../../../utils/mediaShow";
 import { useSelector, useDispatch } from "react-redux";
 import {
+  likePost,
   likeleftPost,
   likerightPost,
   savePost,
@@ -73,8 +74,8 @@ const CardBody = ({ post }) => {
   const [next, setNext] = useState(4);
   const [replyComments, setReplyComments] = useState([]);
   const [isLike, setIsLike] = useState(false);
-  const [isLikeleft, setIsLikeleft] = useState(false);
-  const [isLikeright, setIsLikeright] = useState(false);
+  var [isLikeleft, setIsLikeleft] = useState(false);
+  var [isLikeright, setIsLikeright] = useState(false);
   const [saved, setSaved] = useState(false);
   const [loadLike, setLoadLike] = useState(false);
   const [loadLikeleft, setLoadLikeleft] = useState(false);
@@ -93,20 +94,52 @@ const CardBody = ({ post }) => {
   const { auth, theme, socket } = useSelector((state) => state);
 
   useEffect(() => {
+    var right1;
+    var left1;
+    var right2;
+    var left2;
+    const a = document.querySelectorAll('.countup');
+    for ( var i = 0; i < a.length; i++ ) {
+      a[i].style.display = 'inline';
+    }
+    const b = document.querySelectorAll('.par');
+    for ( var i = 0; i < b.length; i++ ) {
+      b[i].style.display = 'inline';
+    }
+    const c = document.querySelectorAll('.number');
+    for ( var i = 0; i < c.length; i++ ) {
+      c[i].style.display = 'inline';
+    }
+    console.log(post);
+    right1 = (post.likerights.find((likeright) => likeright._id === auth.user._id)!=null);
+    left1 = (post.likelefts.find((likeleft) => likeleft._id === auth.user._id)!=null);
+    right2 = (post.likerights.find((likeright) => likeright == auth.user._id)!=null);
+    left2 = (post.likelefts.find((likeleft) => likeleft == auth.user._id)!=null);
+    console.log(right1,right2,left1,left2);
     if (post.likes.find((like) => like._id === auth.user._id)) {
       setIsLike(true);
     } else {
       setIsLike(false);
     }
-    if (post.likelefts.find((likeleft) => likeleft._id === auth.user._id)) {
+    if (left1) {
       setIsLikeleft(true);
     } else {
-      setIsLikeleft(false);
+      if (left2){
+        setIsLikeleft(true);
+        console.log("left2");
+      }else{
+        setIsLikeleft(false);
+      }
     }
-    if (post.likerights.find((likeright) => likeright._id === auth.user._id)) {
+    if (right1) {
       setIsLikeright(true);
     } else {
-      setIsLikeright(false);
+      if (right2){
+        console.log("right2");
+        setIsLikeright(true);
+      }else{
+        setIsLikeright(false);
+      }
     }
   }, [post.likes, post.likelefts, post.likerights, auth.user._id]);
 

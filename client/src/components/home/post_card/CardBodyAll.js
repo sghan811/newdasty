@@ -96,7 +96,7 @@ const CardBody = ({ post }) => {
 
   const dispatch = useDispatch();
   const { auth, theme, socket } = useSelector((state) => state);
-  useEffect(() => {
+  const start_show = () => {
     const a = document.querySelectorAll('.countup');
     for ( var i = 0; i < a.length; i++ ) {
       a[i].style.display = 'inline';
@@ -109,6 +109,10 @@ const CardBody = ({ post }) => {
     for ( var i = 0; i < c.length; i++ ) {
       c[i].style.display = 'inline';
     }
+  }
+  useEffect(() => {
+    console.log(post);
+    start_show();
     if (post.likes.find((like) => like._id === auth.user._id)) {
       setIsLike(true);
     } else {

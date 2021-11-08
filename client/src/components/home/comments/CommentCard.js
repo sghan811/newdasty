@@ -35,27 +35,37 @@ const CommentCard = ({ children, comment, post, commentId }) => {
     if (loadLike) return;
     const b = document.getElementById(post._id);
     console.log(b);
-    const aaa = document.querySelectorAll(`[id='${comment.user._id}']`);
+    const aaa = b.querySelectorAll(`[id='${comment.user._id}']`);
     console.log(aaa);
     var user_find;
     try{
       if(post.likelefts.find((likeleft) => likeleft._id === comment.user._id) != null){
-        user_find = b.querySelector(`[id='${post.trend2}']`).style.backgroundColor;
+        user_find = document.querySelector(`[id='${post.trend2}']`).style.backgroundColor;
+        console.log("left1");
       }
     }catch{
       if(post.likerights.find((likeright) => likeright._id === comment.user._id) != null){
-        user_find =  b.querySelector(`[id='${post.trend3}']`).style.backgroundColor;
+        user_find =  document.querySelector(`[id='${post.trend3}']`).style.backgroundColor;
+        console.log("right1");
       }
     }
-     if(post.likerights.find((likeright) => likeright._id === comment.user._id) != null){
-        user_find =  b.querySelector(`[id='${post.trend3}']`).style.backgroundColor;
+    try{
+      if(post.likerights.find((likeright) => likeright._id === comment.user._id) != null){
+        user_find =  document.querySelector(`[id='${post.trend3}']`).style.backgroundColor;
+        console.log("right2");
       }
+    }catch{
+      if(post.likelefts.find((likeleft) => likeleft._id === comment.user._id) != null){
+        user_find = document.querySelector(`[id='${post.trend2}']`).style.backgroundColor;
+        console.log("left2");
+      }
+    }
       console.log(user_find);
 
     for ( var i = 0; i < aaa.length; i++ ) {
       aaa[i].style.backgroundColor = user_find;
     }
-  } 
+  }
   const handleUpdate = () => {
     if (comment.content !== content) {
       dispatch(updateComment({ comment, post, content, auth }));

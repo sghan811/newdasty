@@ -7,7 +7,7 @@ import InputComment from "./home/InputComment";
 
 const PostCardOne = ({ post, theme }) => {
   return (
-    <div className="card">
+    <div className="card" id={post._id}>
       <CardHeader post={post} />
       <CardBody post={post} theme={theme} />
       <CardFooter post={post} />
