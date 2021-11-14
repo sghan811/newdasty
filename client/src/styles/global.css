@@ -368,6 +368,7 @@ button.widthfull {
   padding: 0px 0px;
 }
 .cardpad {
+  font-size: small;
   padding: 0 25px;
 }
 .onlypc {

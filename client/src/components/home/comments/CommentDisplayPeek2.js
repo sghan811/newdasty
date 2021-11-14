@@ -3,7 +3,7 @@ import CommentCardPeek from "./CommentCardPeek2";
 
 const CommentDisplayPeek = ({ comment, post, replyCm, color }) => {
   const [showRep, setShowRep] = useState([]);
-  const [next, setNext] = useState(2);
+  const [next, setNext] = useState(1);
 
   useEffect(() => {
     setShowRep(replyCm.slice(replyCm.length - next));
@@ -28,6 +28,26 @@ const CommentDisplayPeek = ({ comment, post, replyCm, color }) => {
                   commentId={comment._id}
                 />
               )
+          )}
+
+          {replyCm.length - next > 0 ? (
+            <div
+              onClick={() => setNext(next + 10)}
+              style={{ cursor: "pointer" }}
+              // style={{ cursor: "pointer", color: "crimson" }}
+            >
+              Load more...
+            </div>
+          ) : (
+            replyCm.length > 1 && (
+              <div
+                onClick={() => setNext(1)}
+                style={{ cursor: "pointer" }}
+                // style={{ cursor: "pointer", color: "crimson" }}
+              >
+                Hide...
+              </div>
+            )
           )}
         </div>
       </CommentCardPeek>

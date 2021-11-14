@@ -51,7 +51,31 @@ const CardHeaderAll = ({ post }) => {
           </div>
         </div>
       </div>
-
+      <div className="cardpad rightalign bodybottom">
+        <a>
+          {post.likerights.length + post.likelefts.length == 0 ? (
+            <a>아직 아무도 투표하지 않았군요 ㅠㅠ</a>
+          ) : (
+            <a>
+              총 {post.likerights.length + post.likelefts.length}명이
+              참가했습니다!
+            </a>
+          )}
+        </a>
+        <div>
+          {post.trend1 ? (
+            <Link
+              className="lowercase"
+              to={`/hashtag/${post.trend1}`}
+              key={post.trend1}
+            >
+              #{post.trend1}
+            </Link>
+          ) : (
+            <></>
+          )}
+        </div>
+      </div>
       <div className="nav-item dropdown">
         <span
           className="material-icons"

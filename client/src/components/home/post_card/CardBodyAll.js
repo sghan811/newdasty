@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import LikeButton from "../../LikeButton";
 import LikeleftButton from "../../LikeleftButton";
 import LikerightButton from "../../LikerightButton";
-import CommentDisplayPeek from "../comments/CommentDisplayPeek2";
-import CommentDisplayPeek2 from "../comments/CommentDisplayPeek3";
+import CommentDisplayPeek from "../comments/CommentDisplaypeek2";
+import CommentDisplayPeek2 from "../comments/CommentDisplaypeek3";
 import { imageShow, videoShow } from "../../../utils/mediaShow";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -129,14 +129,6 @@ const CardBody = ({ post }) => {
       setIsLikeright(false);
     }
   }, [post.likes, post.likelefts, post.likerights, auth.user._id]);
-  const randomrgb = () => {
-    const x = document.getElementById(post._id);
-    x.querySelector(`.widthfull`).style.backgroundColor = '#'+Math.floor(Math.random()*16777215).toString(16);
-  }
-  const randomrgb2 = () => {
-    const x = document.getElementById(post._id);
-    x.querySelectorAll(`.widthfull`)[1].style.backgroundColor = '#'+Math.floor(Math.random()*16777215).toString(16);
-  }
   const handleLikeleft = async () => {
     if (loadLikeleft) return;
     setLoadLikeleft(true);
@@ -232,8 +224,6 @@ const CardBody = ({ post }) => {
   };
 
   useEffect(() => {
-    randomrgb();
-    randomrgb2();
     if (auth.user.saved.find((id) => id === post._id)) {
       setSaved(true);
     } else {
@@ -568,31 +558,6 @@ const CardBody = ({ post }) => {
             )}
           </>
         )}
-      </div>
-      <div className="cardpad rightalign bodybottom">
-        <a>
-          {post.likerights.length + post.likelefts.length == 0 ? (
-            <a>아직 아무도 투표하지 않았군요 ㅠㅠ</a>
-          ) : (
-            <a>
-              총 {post.likerights.length + post.likelefts.length}명이
-              참가했습니다!
-            </a>
-          )}
-        </a>
-        <div>
-          {post.trend1 ? (
-            <Link
-              className="lowercase"
-              to={`/hashtag/${post.trend1}`}
-              key={post.trend1}
-            >
-              #{post.trend1}
-            </Link>
-          ) : (
-            <></>
-          )}
-        </div>
       </div>
     </div>
   );

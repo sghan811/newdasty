@@ -11,7 +11,7 @@ import {
 } from "../../../redux/actions/postAction";
 import ShareModal from "../../ShareModal";
 import { BASE_URL } from "../../../utils/config";
-import { BiConversation, BiShareAlt, BiAnchor } from "react-icons/bi";
+import { BiConversation, BiShareAlt, BiAnchor, BiComment } from "react-icons/bi";
 
 const CardFooter = ({ post }) => {
   const [isLike, setIsLike] = useState(false);
@@ -78,9 +78,10 @@ const CardFooter = ({ post }) => {
         </div>
         <div class="footer_comments">
           <Link to={`/post/${post._id}`} className="text-dark">
-            <BiConversation className="icony" />
+            <BiComment className="icony" />
+            <a className="joa default">토론하기</a>
           </Link>
-          <a className="joa default">토론하기</a>
+
         </div>
         {/* <div>
           <BiShareAlt

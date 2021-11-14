@@ -22,7 +22,31 @@ const CommentCard = ({ children, comment, post, commentId }) => {
   const [loadLike, setLoadLike] = useState(false);
   const [onEdit, setOnEdit] = useState(false);
   const [onReply, setOnReply] = useState(false);
+  const randomrgb = () => {
+    if (loadLike) return;
+    const b = document.getElementById(post._id);
+    console.log(b);
+    const aaa = b.querySelectorAll(`[id='${comment.user._id}']`);
+    console.log(aaa);
+    var user_find;
+    try{
+      if(post.likelefts.find((likeleft) => likeleft._id === comment.user._id) != null){
+        user_find = b.querySelector(`[id='${post.trend2}']`).style.backgroundColor;
+      }
+    }catch{
+      if(post.likerights.find((likeright) => likeright._id === comment.user._id) != null){
+        user_find =  b.querySelector(`[id='${post.trend3}']`).style.backgroundColor;
+      }
+    }
+     if(post.likerights.find((likeright) => likeright._id === comment.user._id) != null){
+        user_find =  b.querySelector(`[id='${post.trend3}']`).style.backgroundColor;
+      }
+      console.log(user_find);
 
+    for ( var i = 0; i < aaa.length; i++ ) {
+      aaa[i].style.backgroundColor = user_find;
+    }
+  }
   useEffect(() => {
     randomrgb();
     setContent(comment.content);
@@ -41,30 +65,7 @@ const CommentCard = ({ children, comment, post, commentId }) => {
       setOnEdit(false);
     }
   };
-  const randomrgb = () => {
-    if (loadLike) return;
-    console.log(comment);
-    console.log(post);
-    const b = document.getElementById(post._id);
-    const aaa = b.querySelectorAll(`[id='${comment.user._id}']`);
-    var user_find;
-    try{
-      if(post.likelefts.find((likeleft) => likeleft._id === comment.user._id) != null){
-        user_find = document.getElementById(post.trend2).style.backgroundColor;
-      }
-    }catch{
-      if(post.likerights.find((likeright) => likeright._id === comment.user._id) != null){
-        user_find = document.getElementById(post.trend3).style.backgroundColor;
-      }
-    }
-     if(post.likerights.find((likeright) => likeright._id === comment.user._id) != null){
-        user_find = document.getElementById(post.trend3).style.backgroundColor;
-      }
 
-    for ( var i = 0; i < aaa.length; i++ ) {
-      aaa[i].style.backgroundColor = user_find;
-    }
-  }
   const handleLike = async () => {
     if (loadLike) return;
 
@@ -95,83 +96,84 @@ const CommentCard = ({ children, comment, post, commentId }) => {
     opacity: comment._id ? 1 : 0.5,
     pointerEvents: comment._id ? "inherit" : "none",
   };
-  if(post.likerights.find((likeright) => likeright._id === comment.user._id) != null){
-    return (
-      <div className="comment_card2 " style={styleCard} id={comment.user._id}>
-        <div className={`${comment.contenty} comment_content_peek2`}>
-          <Link to={`/profile/${comment.user._id}`} className=" d-flex">
-            <Avatar src={comment.user.avatar} size="small-avatar" />
-          </Link>
-  
-          <div
-            className="flex-fill  "
-            style={{
-              filter: theme ? "invert(1)" : "invert(0)",
-            }}
-          >
-            {onEdit ? (
-              <textarea
-                rows="1"
-                value={content}
-                onChange={(e) => setContent(e.target.value)}
-              />
-            ) : (
-              <>
-                {comment.tag && comment.tag._id !== comment.user._id && (
-                  <Link
-                    className="default text-peek font-bold "
-                    to={`/profile/${comment.tag._id}`}
-                  >
-                    @{comment.tag.username}
-                  </Link>
-                )}
-                <a className="default text-peek font-bold ">
-                  {comment.user.username}
-                </a>
-  
-                <Link className="default text-peek" to={`/post/${post._id}`}>
-                  {content.length < 20
-                    ? content
-                    : readMore
-                    ? content + " "
-                    : content.slice(0, 20) + "..."}
+
+  return (
+    <div className="comment_card " style={styleCard}>
+      <div className={`${comment.contenty} comment_content_peek`} id={comment.user._id}>
+        <Link to={`/profile/${comment.user._id}`} className=" d-flex">
+          <Avatar src={comment.user.avatar} size="small-avatar" />
+        </Link>
+
+        <div
+          className="flex-fill  "
+          style={{
+            filter: theme ? "invert(1)" : "invert(0)",
+          }}
+        >
+          {onEdit ? (
+            <textarea
+              rows="1"
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+            />
+          ) : (
+            <>
+              {comment.tag && comment.tag._id !== comment.user._id && (
+                <Link
+                  className="default text-peek font-bold "
+                  to={`/profile/${comment.tag._id}`}
+                >
+                  @{comment.tag.username}
                 </Link>
-                {content.length > 20 && (
-                  <span
-                    className="readMore font-bold"
-                    onClick={() => setReadMore(!readMore)}
-                  >
-                    {readMore ? "-" : "+"}
-                  </span>
-                )}
-              </>
-            )}
-          </div>
-          <div
-            className="d-flex align-items-center "
-            style={{ cursor: "pointer" }}
-          >
-          </div>
+              )}
+              <a className="default text-peek font-bold ">
+                {comment.user.username}
+              </a>
+
+              <Link className="default text-peek" to={`/post/${post._id}`}>
+                {content.length < 20
+                  ? content
+                  : readMore
+                  ? content + " "
+                  : content.slice(0, 20) + "..."}
+              </Link>
+              {content.length > 20 && (
+                <span
+                  className="readMore font-bold"
+                  onClick={() => setReadMore(!readMore)}
+                >
+                  {readMore ? "-" : "+"}
+                </span>
+              )}
+            </>
+          )}
         </div>
-  
-        {onReply && (
-          <InputComment post={post} onReply={onReply} setOnReply={setOnReply}>
-            <Link
-              style={{ textDecoration: "none" }}
-              className="mr-1"
-              to={`/profile/${onReply.user._id}`}
-            >
-              @{onReply.user.username}
-            </Link>
-          </InputComment>
-        )}
-        {children}
+        <div
+          className="d-flex align-items-center "
+          style={{ cursor: "pointer" }}
+        >
+          <LikeButton
+            isLike={isLike}
+            handleLike={handleLike}
+            handleUnLike={handleUnLike}
+          />
+        </div>
       </div>
-    );
-  }else{
-    return null;
-  }
-  
+
+      {onReply && (
+        <InputComment post={post} onReply={onReply} setOnReply={setOnReply}>
+          <Link
+            style={{ textDecoration: "none" }}
+            className="mr-1"
+            to={`/profile/${onReply.user._id}`}
+          >
+            @{onReply.user.username}
+          </Link>
+        </InputComment>
+      )}
+      {children}
+    </div>
+  );
 };
 
 export default CommentCard;
