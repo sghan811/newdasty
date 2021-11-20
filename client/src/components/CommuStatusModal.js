@@ -31,8 +31,11 @@ const CommuStatusModal = () => {
 
   var items = ["fec8d8", "ffdfd3", "cdf1af", "fdf1ed"];
   var items2 = ["fde2e6", "dcf2de", "bde8e7"];
-  var random = random_item(items);
-  var random2 = random_item2(items2);
+  var timestamp = new Date().getTime();
+  var r = timestamp + "r";
+  var l = timestamp + "l"
+  var random = random_item(r);
+  var random2 = random_item2(l);
 
   var newURL = "" + window.location.pathname;
   var newUR = newURL.slice(6);

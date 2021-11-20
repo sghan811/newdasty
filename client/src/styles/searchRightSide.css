@@ -18,6 +18,7 @@ input#search_right {
   cursor: pointer;
 }
 
+
 @media (max-width: 768px) {
   .searchpage {
     padding: 0 15px;

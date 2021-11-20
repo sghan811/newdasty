@@ -24,6 +24,7 @@ const BommentCard = ({ children, bomment, bost, bommentId }) => {
   const [onReply, setOnReply] = useState(false);
 
   useEffect(() => {
+    randomrgb();
     setContent(bomment.content);
     setIsLike(false);
     setOnReply(false);
@@ -50,7 +51,30 @@ const BommentCard = ({ children, bomment, bost, bommentId }) => {
     await dispatch(likeBomment({ bomment, bost, auth }));
     setLoadLike(false);
   };
+  const randomrgb = () => {
+    if (loadLike) return;
+    console.log(bomment);
+    console.log(bost);
+    const b = document.getElementById(bost._id);
+    const aaa = b.querySelectorAll(`[id='${bomment.user._id}']`);
+    var user_find;
+    try{
+      if(bost.likelefts.find((likeleft) => likeleft._id === bomment.user._id) != null){
+        user_find = document.getElementById(bost.trend2).style.backgroundColor;
+      }
+    }catch{
+      if(bost.likerights.find((likeright) => likeright._id === bomment.user._id) != null){
+        user_find = document.getElementById(bost.trend3).style.backgroundColor;
+      }
+    }
+     if(bost.likerights.find((likeright) => likeright._id === bomment.user._id) != null){
+        user_find = document.getElementById(bost.trend3).style.backgroundColor;
+      }
 
+    for ( var i = 0; i < aaa.length; i++ ) {
+      aaa[i].style.backgroundColor = user_find;
+    }
+  }
   const handleUnLike = async () => {
     if (loadLike) return;
 

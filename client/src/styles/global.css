@@ -368,7 +368,6 @@ button.widthfull {
   padding: 0px 0px;
 }
 .cardpad {
-  font-size: small;
   padding: 0 25px;
 }
 .onlypc {
@@ -378,16 +377,16 @@ button.widthfull {
   display: none;
 }
 img.logo {
-  margin-top: 30%;
+  margin-top: 25%;
 
-  max-width: 40px;
-  max-height: 40px;
+  max-width: 30px;
+  max-height: 30px;
 }
 .headerpc {
   display: block;
   margin: auto;
   padding: 0 0 1px 0;
-  font-size: 42px;
+  font-size: 30px;
 }
 .hashtag {
   display: flex;
@@ -405,6 +404,11 @@ img.logo {
 }
 a.countup {
   color: black;
+  display: none;
+}
+a.par {
+  color: black;
+  display: none;
 }
 /* !responsive design */
 li {
@@ -507,6 +511,8 @@ a.underlinetext {
   font-family: "지마켓산스체", "GmarketSansBold", Gbold;
 }
 .communitymenus {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
   box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.16);
   padding: 0.5rem;
   background-color: white;
@@ -516,6 +522,9 @@ a.underlinetext {
   margin: 10px 10px 15px 10px;
   color: black;
   overflow-y: scroll;
+}
+.communitymenus::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
 }
 .communitymenus:hover {
   background: #d0d0d0;
@@ -1048,8 +1057,8 @@ a.lowercase {
     padding: 0 15px;
   }
   img.logo {
-    max-width: 40px;
-    max-height: 40px;
+    max-width: 30px;
+    max-height: 30px;
   }
   .headerpc {
     display: block;

@@ -4,13 +4,12 @@ import CommentCard from "./CommentCard";
 const CommentDisplay = ({ comment, post, replyCm }) => {
   const [showRep, setShowRep] = useState([]);
   const [next, setNext] = useState(1);
-
   useEffect(() => {
     setShowRep(replyCm.slice(replyCm.length - next));
   }, [replyCm, next]);
 
   return (
-    <div className="comment_display" id={comment.user._id}>
+    <div className="comment_display">
       <CommentCard post={post} comment={comment} commentId={comment._id}>
         <div className="ps-4">
           {showRep.map(

@@ -78,6 +78,10 @@ export const createPost = ({
       auth.token
     );
 
+
+
+    
+
     dispatch({
       type: POST_TYPES.CREATE_POST,
       payload: { ...res.data.newPost, user: auth.user },
@@ -447,38 +451,7 @@ export const likeleftPost = ({ post, auth, socket }) => async (dispatch) => {
     });
   }
 };
-export const likeleft = ({post , auth, socket }) => async (dispatch) => {
-  const newPost = { ...post, likelefts: [...post.likelefts, auth.user] };
 
-  dispatch({ type: ALL_TYPES.UPDATE_POST, payload: newPost });
-  socket.emit("likeleftAll", newPost);
-
-  try {
-    await patchDataAPI(`post/${post._id}/likeleft`, null, auth.token);
-
-    // todo notification
-    const msg = {
-      id: auth.user._id,
-      text: "Likeleftd your post.",
-      recipients: [post.user._id],
-      url: `/post/${post._id}`,
-      content: post.content,
-      contentsub: post.contentsub,
-      community: post.community,
-      title: post.title, //added part
-      image: post.images[0].url,
-    };
-
-    dispatch(createNotify({ msg, auth, socket }));
-  } catch (err) {
-    dispatch({
-      type: GLOBALTYPES.ALERT,
-      payload: {
-        // error: err.response.data.msg,
-      },
-    });
-  }
-};
 export const likeleftAll = ({ post, auth, socket }) => async (dispatch) => {
   const newPost = { ...post, likelefts: [...post.likelefts, auth.user] };
 
@@ -558,39 +531,6 @@ export const unLikeleftPost = ({ post, auth, socket }) => async (dispatch) => {
 
   try {
     await patchDataAPI(`post/${post._id}/unlikeleft`, null, auth.token);
-
-    // todo notification
-    const msg = {
-      id: auth.user._id,
-      text: "Likeleftd your post.",
-      recipients: [post.user._id],
-      url: `/post/${post._id}`,
-    };
-
-    dispatch(removeNotify({ msg, auth, socket }));
-  } catch (err) {
-    dispatch({
-      type: GLOBALTYPES.ALERT,
-      payload: {
-        // error: err.response.data.msg,
-      },
-    });
-  }
-};
-
-export const unLikeleft = ({ post, auth, socket }) => async (dispatch) => {
-  const newPost = {
-    ...post,
-    likelefts: post.likelefts.filter(
-      (likeleft) => likeleft._id !== auth.user._id
-    ),
-  };
-
-  dispatch({ type: ALL_TYPES.UPDATE_POST, payload: newPost });
-  socket.emit("unLikeleftAll", newPost);
-
-  try {
-    await patchDataAPI(`/unlikeleft`, null, auth.token);
 
     // todo notification
     const msg = {

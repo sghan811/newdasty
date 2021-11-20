@@ -30,7 +30,6 @@ const PostCard = ({ post, theme }) => {
     });
     setLoad(false);
   };
-  
   function findCherries(bost) {
     return bost.community == post.community;
   }
