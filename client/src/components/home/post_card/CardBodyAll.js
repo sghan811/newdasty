@@ -25,7 +25,7 @@ import ShareModal from "../../ShareModal";
 import Carousel from "../../Carousel";
 import { postDataAPI } from "../../../utils/fetchData";
 
-const CardBody = ({ post }) => {
+const CardBody = ({ post, comment}) => {
   function DoDisplay() {
     var con = document.getElementById("myDIV");
     if ((con.style.display = "none")) {
